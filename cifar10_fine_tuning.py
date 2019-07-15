@@ -20,6 +20,7 @@ import keras
 from keras.models import Sequential
 from keras.layers.convolutional import Conv2D, MaxPooling2D
 from keras.layers.core import Dense, Dropout, Activation, Flatten
+from keras.layers import BatchNormalization
 from keras.applications import VGG16
 import numpy as np
 
@@ -32,7 +33,9 @@ model = Sequential()
 model.add(vgg_conv)
  
 model.add(Flatten())
-model.add(Dense(1024, activation='relu'))
+model.add(Dense(1024))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(10, activation='softmax'))
 
